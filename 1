@@ -20,15 +20,16 @@ fn main() {
 
     // just pass it to a function as borrowed!
     young_programmer_print_that_type(&v[0]);
-
-    {
-      let x = (&v[0].as_str());
-    }
+    young_programmer_print_that_type(&v[0]);
 
     v.push("world".to_string());
     println!("{:?}", v);
 }
 
 fn young_programmer_print_that_type(strang: &String) {
+    type_printer::print_type_of(strang);
+}
+
+fn a_function_that_takes_a_string_slice(strang: &str) {
     type_printer::print_type_of(strang);
 }
