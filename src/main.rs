@@ -23,6 +23,8 @@ fn main() {
 
     {
       let x = (&v[0].as_str());
+      type_printer::print_type_of(&&&&&&&x);
+      // => &'static &'static &'static &'static &'static &'static &'static
     }
 
     v.push("world".to_string());
