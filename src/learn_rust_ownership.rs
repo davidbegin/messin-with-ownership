@@ -1,6 +1,11 @@
+// http://chrismorgan.info/blog/rust-ownership-the-hard-way.html
+
 pub fn the_hard_way() {
-    // I like format for multi-line strings
-    // prints how I want and is intutive to me
+    rule_1();
+    rule_2();
+}
+
+fn rule_1() {
     let rule_1: &str = "
         Each object can used exactly once.
         Once you use an object it is moved to the new location
@@ -25,4 +30,38 @@ pub fn the_hard_way() {
     //
     // and thats just from reading a sentence!
     // Note to self: Tell new Rustaceans this
+}
+
+fn rule_2() {
+    let rule_2: &str = "
+        When an object passes out of scope,
+        it is destroyed and is no longer usable.
+    ";
+
+    println!("Rule 2: {}", rule_2);
+
+    {
+        let a = 10;
+    }
+
+    // oh no no no
+    // println!("{}", a);
+
+    // Time for some Rule 2 practice
+
+    {
+        let pattern = "subject";
+        // println!("{}", pattern);
+    }
+
+    let pattern = "subject";
+    // will not compile, because local_var is only in the scope of its branch
+    // let result  = match pattern {
+    //     local_var @ "subject" => local_var,
+    //     _         => local_var
+    // };
+
+    // Not sure if this is the same example as in the blog article
+
+
 }
