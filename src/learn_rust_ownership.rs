@@ -1,8 +1,9 @@
 // http://chrismorgan.info/blog/rust-ownership-the-hard-way.html
 
 pub fn the_hard_way() {
-    rule_1();
-    rule_2();
+    // rule_1();
+    // rule_2();
+    option_sidebar();
 }
 
 fn rule_1() {
@@ -63,5 +64,39 @@ fn rule_2() {
 
     // Not sure if this is the same example as in the blog article
 
+    let subject = [1019, 3239];
+    for pattern in subject.iter() {
+        println!("ah {}, a fine reference!", pattern);
+        // pattern is available here
+    }
+    // and of course this won't compile
+    // println!("{}", pattern)
+}
 
+fn option_sidebar() {
+    // I need to take a quick sidebar, and mess with options
+    // I need a refresher
+
+    // So what are options for?
+
+    // initial guess: They are for values they may be nil
+
+    // So there are 3 keywords to this Option business.
+    // * Option
+    // * Some
+    // * None
+
+    // So that means I can make a function that returns
+    // either Some or None
+
+    println!("{:?}", do_not_get_greedy(5));
+    println!("{:?}", do_not_get_greedy(14));
+}
+
+fn do_not_get_greedy(num: i32) -> Option<i32> {
+    if num < 10 {
+      Some(num)
+    } else {
+      None
+    }
 }
