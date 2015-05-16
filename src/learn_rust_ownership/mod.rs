@@ -1,38 +1,15 @@
+// mod rule_1;
 extern crate type_printer;
+mod rule_1;
 
 // http://chrismorgan.info/blog/rust-ownership-the-hard-way.html
 
 pub fn the_hard_way() {
+    rule_1::experiments();
     // rule_1();
     // rule_2();
-    rule_3();
-}
-
-fn rule_1() {
-    let rule_1: &str = "
-        Each object can used exactly once.
-        Once you use an object it is moved to the new location
-        and is no longer usable in the old.
-    ";
-
-    println!("Rule 1: {}", rule_1);
-
-    // So the deeper question is what constitutes "using"
-
-    struct A;
-
-    let a = A;
-    let b = a;
-    // won't compile
-    // let c = a;
-    let c = b;
-
-    // This is such a small concept, but I somehow never got it,
-    // and had so many problems around it, I need to go back,
-    // and tackle a lot of areas I used to be struggling with.
-    //
-    // and thats just from reading a sentence!
-    // Note to self: Tell new Rustaceans this
+    // rule_3();
+    // rule_4();
 }
 
 fn rule_2() {
@@ -89,6 +66,11 @@ fn rule_3() {
     foo_the_c_way();
 }
 
+fn rule_4() {
+
+}
+
 fn foo_the_c_way() -> i32 {
+
     return 1;
 }
