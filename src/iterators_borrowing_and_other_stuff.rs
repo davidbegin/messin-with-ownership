@@ -2,6 +2,8 @@
 // how, when, why to use borrowed or other
 // ownership patterns when using iterators
 
+extern crate type_printer;
+
 pub fn land_of_confusion() {
     println!("this is the land of confusion!");
 
@@ -21,10 +23,21 @@ pub fn land_of_confusion() {
     let bigger_numbas = numbas.iter().map(
       |i|
       {
-        println!("ha!");
+        type_printer::print_type_of(&i);
         i + 1
       }
     );
 
     bigger_numbas.collect::<Vec<i32>>();
+
+    vec![1, 2, 3].iter().map(|i| i + 1);
+    // i is &'static i32
+
+    vec![1, 2, 3].iter().map(|&i| i + 1);
+    // i is i32
+
+    // so if we don't borrow the value,
+    // each value is giving a static lifetime value
+
+    // if we borrow, then it has a normal lifetime
 }

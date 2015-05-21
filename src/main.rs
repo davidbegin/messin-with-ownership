@@ -1,6 +1,5 @@
 #![feature(convert)]
-#![allow(dead_code)]
-#![allow(unused_variables)]
+#![allow(dead_code, unused_variables, unused_must_use)]
 
 mod ui;
 mod basic;
