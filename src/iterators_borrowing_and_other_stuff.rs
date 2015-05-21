@@ -36,6 +36,31 @@ pub fn land_of_confusion() {
 
     // alright lets try and kick it up a notch all iterate and call some methods
 
+    // iteratoring_with_methods_example_1();
+    iteratoring_with_methods_example_2();
+}
+
+fn numba_increaser_1(num: i32) -> i32 {
+    num + 1
+}
+
+fn numba_increaser_2(num: &i32) -> i32 {
+    num + 1
+}
+
+fn numba_increaser_3(num: i32) -> i32 {
+    num + 1
+}
+
+fn iteratoring_with_methods_example_2() {
+    let result = vec![1, 2, 3].iter().map(|i| {
+        numba_increaser_2(i)
+    }).collect::<Vec<i32>>();
+
+    println!("result: {:?}", result);
+}
+
+fn iteratoring_with_methods_example_1() {
     vec![1, 2, 3].iter().map(|i| {
         // won't compile
         //     expected `i32`,
@@ -46,12 +71,10 @@ pub fn land_of_confusion() {
         // so i is borrowed value
         numba_increaser_2(i);
     });
-}
 
-fn numba_increaser_1(num: i32) -> i32 {
-    5
-}
+    let result = vec![1, 2, 3].iter().map(|i| {
+        numba_increaser_2(i)
+    }).collect::<Vec<i32>>();
 
-fn numba_increaser_2(num: &i32) -> i32 {
-    5
+    println!("result: {:?}", result);
 }
