@@ -37,7 +37,8 @@ pub fn land_of_confusion() {
     // alright lets try and kick it up a notch all iterate and call some methods
 
     // iteratoring_with_methods_example_1();
-    iteratoring_with_methods_example_2();
+    // iteratoring_with_methods_example_2();
+    iteratoring_with_methods_example_3();
 }
 
 fn numba_increaser_1(num: i32) -> i32 {
@@ -48,13 +49,28 @@ fn numba_increaser_2(num: &i32) -> i32 {
     num + 1
 }
 
-fn numba_increaser_3(num: i32) -> i32 {
-    num + 1
+fn numba_increaser_3(num: &'static i32) -> i32 {
+    1
+}
+
+fn iteratoring_with_methods_example_3() {
+    let temp_vec: Vec<i32> = vec![1, 2, 3];
+
+    temp_vec.iter().map(|i| {
+        // I reached for the stars and failed!
+        // numba_increaser_3(i)
+    });
+
+    vec![1, 2, 3].iter().map(|i| {
+        // another swing and a miss!
+        // let num: &'static i32 = 5;
+        // numba_increaser_3(num)
+    });
 }
 
 fn iteratoring_with_methods_example_2() {
-    let result = vec![1, 2, 3].iter().map(|i| {
-        numba_increaser_2(i)
+    let result = vec![1, 2, 3].iter().map(|&i| {
+        numba_increaser_1(i)
     }).collect::<Vec<i32>>();
 
     println!("result: {:?}", result);
