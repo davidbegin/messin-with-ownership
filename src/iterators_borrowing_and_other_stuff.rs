@@ -5,52 +5,30 @@
 extern crate type_printer;
 
 pub fn land_of_confusion() {
-    // first lets make a vec
-    let numbas: Vec<i32> = vec![1, 2, 3, 4];
-
-    // then iterator over it and increase all the numbers
-
-    let bigger_numbas = numbas.iter().map(|i| i + 1);
-
-    // Now I can't print this
-    // println!("bigger numbas: {:?}", bigger_numbas);
-    // println!("bigger numbas: {:?}", bigger_numbas.collect::<Vec<i32>>());
-
-    // so what happened here?
-
-    let bigger_numbas = numbas.iter().map(|i| i + 1);
-    bigger_numbas.collect::<Vec<i32>>();
-
-    vec![1, 2, 3].iter().map(|i| i + 1);
-    // i is &'static i32
-
-    vec![1, 2, 3].iter().map(|&i| i + 1);
-    // i is i32
-
-    // so if we don't borrow the value,
-    // each value is giving a static lifetime value
-
-    // if we borrow, then it has a normal lifetime
-
-    // so I need to learn more about lifetimes!
-
-    // alright lets try and kick it up a notch all iterate and call some methods
-
+    // initial_exploration_of_iterators_and_borrowing();
     // iteratoring_with_methods_example_1();
     // iteratoring_with_methods_example_2();
-    iteratoring_with_methods_example_3();
+    // iteratoring_with_methods_example_3();
+    for_in_and_borrowing();
 }
 
-fn numba_increaser_1(num: i32) -> i32 {
-    num + 1
+fn just_a_guy_trying_to_figure_out_a_type_through_compile_errors(num: &str) {
+
 }
 
-fn numba_increaser_2(num: &i32) -> i32 {
-    num + 1
-}
+fn for_in_and_borrowing() {
+    for thang in &vec![1, 2, 3] {
+        type_printer::print_type_of(&thang);
+        // but this prints out &'static
+        //
+        // is my terrible tool wrong!
+        //
+        // but this is a borrowed value
+        // just_a_guy_trying_to_figure_out_a_type_through_compile_errors(thang);
 
-fn numba_increaser_3(num: &'static i32) -> i32 {
-    1
+        // println! handles defrencing I just learned!
+        // println!("for {} in a vec", thang);
+    }
 }
 
 fn iteratoring_with_methods_example_3() {
@@ -94,3 +72,51 @@ fn iteratoring_with_methods_example_1() {
 
     println!("result: {:?}", result);
 }
+
+fn initial_exploration_of_iterators_and_borrowing() {
+    // first lets make a vec
+    let numbas: Vec<i32> = vec![1, 2, 3, 4];
+
+    // then iterator over it and increase all the numbers
+
+    let bigger_numbas = numbas.iter().map(|i| i + 1);
+
+    // THIS WON'T COMPILE
+    // println!("bigger numbas: {:?}", bigger_numbas);
+
+    // But this will
+    println!("bigger numbas: {:?}", bigger_numbas.collect::<Vec<i32>>());
+
+    // so what happened here?
+
+    let bigger_numbas = numbas.iter().map(|i| i + 1);
+    bigger_numbas.collect::<Vec<i32>>();
+
+    vec![1, 2, 3].iter().map(|i| i + 1);
+    // i is &'static i32
+
+    vec![1, 2, 3].iter().map(|&i| i + 1);
+    // i is i32
+
+    // so if we don't borrow the value,
+    // each value is giving a static lifetime value
+
+    // if we borrow, then it has a normal lifetime
+
+    // so I need to learn more about lifetimes!
+
+    // alright lets try and kick it up a notch all iterate and call some methods
+}
+
+fn numba_increaser_1(num: i32) -> i32 {
+    num + 1
+}
+
+fn numba_increaser_2(num: &i32) -> i32 {
+    num + 1
+}
+
+fn numba_increaser_3(num: &'static i32) -> i32 {
+    1
+}
+
