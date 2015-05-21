@@ -14,7 +14,7 @@ pub fn sample_1() {
     young_programmer_print_that_type(&v[0]);
 
     {
-      let x = (&v[0].as_str());
+      let x = &v[0].as_str();
       type_printer::print_type_of(&&&&&&&x);
       // => &'static &'static &'static &'static &'static &'static &'static
     }
