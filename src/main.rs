@@ -1,5 +1,5 @@
 #![feature(convert)]
-#![allow(dead_code, unused_variables, unused_must_use)]
+#![allow(dead_code, unused_variables, unused_must_use, unused_mut)]
 
 extern crate type_printer;
 mod ui;
@@ -7,6 +7,7 @@ mod basic;
 mod learn_rust_ownership;
 mod iterators_borrowing_and_other_stuff;
 mod this_is_how_we_do_it;
+mod structs_and_borrowing;
 
 fn main() {
     ui::title();
@@ -14,7 +15,8 @@ fn main() {
     // learn_rust_ownership::the_hard_way()
     // iterators_borrowing_and_other_stuff::land_of_confusion();
     // this_is_how_we_do_it::this_it_how_we_do_it();
-    mut_ref_what();
+    // mut_ref_what();
+    structs_and_borrowing::an_exploration();
 }
 
 fn mut_ref_what() {
